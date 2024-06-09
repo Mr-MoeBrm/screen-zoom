@@ -1,10 +1,12 @@
+// index.ts
+
 import { registerPlugin } from '@capacitor/core';
 
-import type { screenZoomPlugin } from './definitions';
+import type { ScreenZoomPlugin } from './definitions';
 
-const screenZoom = registerPlugin<screenZoomPlugin>('screenZoom', {
-  web: () => import('./web').then(m => new m.screenZoomWeb()),
+const ScreenZoom = registerPlugin<ScreenZoomPlugin>('ScreenZoom', {
+  web: () => import('./web').then(m => new m.ScreenZoomWeb()),
 });
 
 export * from './definitions';
-export { screenZoom };
+export { ScreenZoom };

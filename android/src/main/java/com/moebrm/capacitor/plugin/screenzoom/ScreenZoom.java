@@ -1,26 +1,22 @@
 package com.moebrm.capacitor.plugin.screenzoom;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.WindowManager;
 
-import com.getcapacitor.annotation.CapacitorPlugin;
-import com.getcapacitor.Plugin;
-import com.getcapacitor.PluginCall;
-import com.getcapacitor.PluginMethod;
+public class ScreenZoom {
 
-@CapacitorPlugin(name = "ScreenZoomPlugin")
-public class ScreenZoomPlugin extends Plugin {
+    public String echo(String value) {
+        Log.i("Echo", value);
+        return value;
+    }
 
-    @PluginMethod
-    public void setScreenZoom(PluginCall call) {
-        Activity activity = getActivity();
+    public void setScreenZoom(Activity activity) {
         if (activity != null) {
             WindowManager.LayoutParams params = activity.getWindow().getAttributes();
             params.width = WindowManager.LayoutParams.MATCH_PARENT;
             params.height = WindowManager.LayoutParams.MATCH_PARENT;
             activity.getWindow().setAttributes(params);
         }
-
-        call.resolve();
     }
 }
