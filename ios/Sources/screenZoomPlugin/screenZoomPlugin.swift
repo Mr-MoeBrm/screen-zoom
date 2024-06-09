@@ -1,23 +1,16 @@
-import Foundation
+// iOS Implementation
 import Capacitor
+import UIKit
 
-/**
- * Please read the Capacitor iOS Plugin Development Guide
- * here: https://capacitorjs.com/docs/plugins/ios
- */
-@objc(screenZoomPlugin)
-public class screenZoomPlugin: CAPPlugin, CAPBridgedPlugin {
-    public let identifier = "screenZoomPlugin"
-    public let jsName = "screenZoom"
-    public let pluginMethods: [CAPPluginMethod] = [
-        CAPPluginMethod(name: "echo", returnType: CAPPluginReturnPromise)
-    ]
-    private let implementation = screenZoom()
+@objc(ScreenZoomPlugin)
+public class ScreenZoomPlugin: CAPPlugin {
 
-    @objc func echo(_ call: CAPPluginCall) {
-        let value = call.getString("value") ?? ""
-        call.resolve([
-            "value": implementation.echo(value)
-        ])
+    @objc func setScreenZoom(_ call: CAPPluginCall) {
+        // Set screen zoom level to 100%
+        if let rootView = UIApplication.shared.keyWindow?.rootViewController?.view {
+            rootView.transform = CGAffineTransform.identity
+        }
+        
+        call.resolve()
     }
 }
